@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 
 namespace PruebaEscrituraArchivos
 {
@@ -17,6 +18,12 @@ namespace PruebaEscrituraArchivos
         }
         static void Main(string[] args)
         {
+            var CurrentDirectory = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string directorio = Directory.GetCurrentDirectory();
+
+            Console.WriteLine(CurrentDirectory);
+            Console.WriteLine(directorio + "\\aprobados.txt");
+
             Console.Title = "Prueba 1";
 
             int opcion;
@@ -103,9 +110,13 @@ namespace PruebaEscrituraArchivos
                 Console.WriteLine("Desea ingresar otro registro? S/N");
                 opcion = Console.ReadLine();
 
-                if(opcion == "N" || opcion == "n")
+                
+                if (opcion == "N" || opcion == "n")
                 {
-                    Process.Start("datos.txt");
+                    
+                    string directorio = Directory.GetCurrentDirectory();
+                    
+                    Process.Start("notepad.exe", directorio+ "\\datos.txt");
                 }
             } while (opcion == "S" || opcion == "s");
 
